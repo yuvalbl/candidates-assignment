@@ -5,7 +5,7 @@
 sudo sed -i '$ a 192.168.100.10 server1' /etc/hosts
 
 # add server1 to known_hosts
-ssh-keyscan server1 >> ~/.ssh/known_hosts
+# ssh-keyscan server1 >> ~/.ssh/known_hosts
 
 # allow password auhentication (so server1 can connect to server2)
 sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
@@ -14,11 +14,4 @@ sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ss
 
 # restart ssh service
 sudo service ssh reload
-
-# permissions
-sudo chmod 700 /home/vagrant/.ssh
-sudo chmod 600 /home/vagrant/.ssh/authorized_keys
-
-# delete password of user vagrant
-sudo passwd -d vagrant
 
